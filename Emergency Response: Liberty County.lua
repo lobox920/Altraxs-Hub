@@ -237,19 +237,19 @@ Lockpick.DescendantAdded:Connect(function(child)
 end)
 
 
-Main.Safe.ChildAdded:Connect(function(child)
+Main.Safe.ChildAdded:Connect(function(child) --- Idk if it work it was working sometimes x)
     if child:IsA("Frame") and child.Name == "Safe" then
         local SafeUI = Main.Safe
         task.wait(2)
         repeat
             local success, message = pcall(function()
                 local Rotation = child.Dial.Rotation
-                local TargetNumber = tonumber(SafeUI.Top2.TargetNum.Text)
-                local CurrentNumber = (math.abs(Rotation) % 360)/36*10
+                local Wanted = tonumber(SafeUI.Top2.TargetNum.Text)
+                local Current = (math.abs(Rotation) % 360)/36*10
                 if Rotation > 0 then
-                    CurrentNumber = 100 - CurrentNumber
+                    Current = 100 - Current
                 end
-                if math.abs(CurrentNumber - TargetNumber) <= 1 then
+                if math.abs(Current - Wanted) <= 1 then
                     if _G.AutoSafe then
                         Click()
                         task.wait(1)
