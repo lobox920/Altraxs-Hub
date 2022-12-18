@@ -26,54 +26,10 @@ function updatecheck()
       end
     end
 end
-function acbypass()
-   local BlockedRemotes = { 
-      "ResyncCharacter",
-      "Handcuffs",
-      "CarLeave",
-      "GetCurrency", 
-      "GameAnalyticsError",
-      "PurchaseShopItem",
-      "ToolPickUp",
-      "CarModify",
-      "CheckWalkSpeed",
-      "ViewTrafficCamera",
-  }
-  local Events = {
-      Fire = true, 
-      Invoke = true, 
-      FireServer = true, 
-      InvokeServer = true,
-  }
-  
-  local gameMeta = getrawmetatable(game)
-  local psuedoEnv = {
-      ["__index"] = gameMeta.__index,
-      ["__namecall"] = gameMeta.__namecall;
-  }
-  setreadonly(gameMeta, false)
-  gameMeta.__index, gameMeta.__namecall = newcclosure(function(self, index, ...)
-      local scripts = getcallingscript()
-      if Events[index] then
-          for i,v in pairs(BlockedRemotes) do
-              if v == self.Name and not checkcaller() then
-                  return workspace:WaitForChild("Altrax Hub") -- It is supposed to send a function and error with a WaitForChild
-              end
-          end
-      end
-      return psuedoEnv.__index(self, index, ...)
-  end)
-  setreadonly(gameMeta, true)
-  local ContentProvider = game:GetService("ContentProvider")
-  hookfunction(ContentProvider.PreloadAsync or ContentProvider.PreloadAsync(), function(...) 
-      return workspace:WaitForChild("Altrax Hub") -- Some dex or stuff getting detected by this
-  end)
-end
 spawn(updatecheck)
 task.wait(0.8)
 
 if game.PlaceId == 2534724415 then
-   spawn(acbypass)
   loadstring(game:HttpGet("https://raw.githubusercontent.com/lobox920/Altraxs-Hub/main/Emergency%20Response%3A%20Liberty%20County.lua"))()
 elseif game.PlaceId == 9210611498 then
     local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
