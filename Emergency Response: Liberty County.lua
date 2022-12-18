@@ -82,7 +82,7 @@ end
 local devconsole = CoreGui:FindFirstChild("DevConsoleMaster")
 --if devconsole then devconsole:Destroy() end -- DevConsoleMas
 
-plr.CharacterAdded:Connect(function(newChar)
+plr.CharacterAdded:Connect(function(newChar) -- disable connection so it doesnt spam error, i wanted to have a cleaner console
     char = newChar
     humr = newChar:WaitForChild("HumanoidRootPart")
     hum = newChar:WaitForChild("Humanoid")
