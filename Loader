@@ -74,33 +74,6 @@ task.wait(0.8)
 
 if game.PlaceId == 2534724415 then
    spawn(acbypass)
-    local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
-
-    local Window = Rayfield:CreateWindow({
-        Name = "Altraxs Hub",
-        LoadingTitle = "Getting Scripts",
-        LoadingSubtitle = "by Awaken#6969 & Lobox920#9889",
-        ConfigurationSaving = {
-           Enabled = true,
-           FolderName = nil, 
-           FileName = "Altraxs Hub"
-        },
-        Discord = {
-           Enabled = true,
-           Invite = "https://discord.gg/3dPPvsVAy4", 
-           RememberJoins = true 
-        },
-    KeySystem = true, 
-    KeySettings = {
-       Title = "Altraxs Hub",
-       Subtitle = "Key System",
-       Note = "Join the discord https://discord.gg/3dPPvsVAy4 For KEY",
-       FileName = "Altraxs Hub", 
-       SaveKey = true,
-       GrabKeyFromSite = false, 
-       Key = "yes"
-    }   
-  })
   loadstring(game:HttpGet("https://raw.githubusercontent.com/lobox920/Altraxs-Hub/main/Emergency%20Response%3A%20Liberty%20County.lua"))()
 elseif game.PlaceId == 9210611498 then
     local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
