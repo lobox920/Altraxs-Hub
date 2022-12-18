@@ -946,8 +946,15 @@ local function webhook(WebHook, player)
            ["content"] = "@here",
            ["embeds"] = {
                {
-                   ["title"] = "Test Webhook Altrax Mod Detection System",
+                   ["title"] = "Altrax Hub Mod Detection System",
                    ["type"] = "rich",
+                   ["fields"] = {
+                    {
+                        ["name"] = "Admin Joined!",
+                        ["value"] = "Admin : "..player.Name.." Has joined the server",
+                        ["inline"] = false
+                    },
+                   },
                    ["color"] = tonumber(0x7269da),
                }
            }
@@ -979,7 +986,7 @@ _G.ModDetection = false
 Players.PlayerAdded:Connect(function(player)
     if player:GetRoleInGroup(4328109) == "Moderator" or player:GetRoleInGroup(4328109) == "Developer" or player:GetRoleInGroup(4328109) == "Senior Developer" or player:GetRoleInGroup(4328109) == "Community Manager"  or player:GetRoleInGroup(4328109) == "Owner" then
         if _G.ModDetection then
-            webhook("https://discord.com/api/webhooks/1053604995070709780/6DCEgHkyEFUPcX2OOnSn21iNShGFU1FxsPFp3YQqvLrW2EmIWcF_tMbBlDfyQ_BNx2rX")
+            webhook(_G.Webhook, player)
         end
     end
 end)   
@@ -987,7 +994,7 @@ end)
 local Button = Misc:CreateButton({
     Name = "Test Webhook",
     Callback = function()
-        webhook(_G.Webhook)
+        webhook(_G.Webhook, plr)
     end,
 })
 
