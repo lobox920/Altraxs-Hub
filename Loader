@@ -12,17 +12,17 @@ function updatecheck()
         game:Shutdown()
        elseif game.PlaceVersion == 2265 then
         rconsoleprint("\n  Altrix Hub : ".."Script Updated, Current Game Version:"..game.PlaceVersion)
-        rconsoleprint("\n  Altrix Hub : " .. " Welcome "..game:GetService("Players").LocalPlayer.Name.."Make sure you give your feedback in discord")
+        rconsoleprint("\n  Altrix Hub : " .. " Welcome "..game:GetService("Players").LocalPlayer.Name.." Make sure you give your feedback in discord")
       end
     elseif game.PlaceId == 9210611498 then
      if game.PlaceVersion ~= 6468 then 
         game.Players.LocalPlayer:Kick("\n For more information report to https://discord.gg/3dPPvsVAy4 or Awaken#6969 & lobox920#9889 ") 
-        rconsoleprint("\n  ","Game Updated, New version is "..game.PlaceVersion.."Please report that to owners")
+        rconsoleprint("\n  ","Game Updated, New version is "..game.PlaceVersion.." Please report that to owners")
         wait(0.2)
         game:Shutdown()
      elseif game.PlaceVersion == 6468 then
         rconsoleprint("\n  Altrix Hub :".." Script Updated, Current Game Version: "..game.PlaceVersion)
-        rconsoleprint("\n  Altrix Hub :" .. " Welcome "..game:GetService("Players").LocalPlayer.Name.."Make sure you give your feedback in discord")
+        rconsoleprint("\n  Altrix Hub :" .. " Welcome "..game:GetService("Players").LocalPlayer.Name.." Make sure you give your feedback in discord")
       end
     end
 end
