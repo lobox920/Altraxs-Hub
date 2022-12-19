@@ -731,17 +731,33 @@ Tab:CreateDropdown({
 })
 local Dropdown = Tab:CreateDropdown({
     Name = "Gas Stations",
-    Options = {"City Gas Station","County Gas Station"}, "Town Gas Station",
+    Options = {"City Gas Station","County Gas Station", "Town Gas Station"},
     CurrentOption = "Option 1",
     Flag = "Dropdown1",
     Callback = function(Option)
         if char and humr ~= nil then
             if Option == "City Gas Station" then
-                humr.CFrame = CFrame.neww(-1006.37548828125, 23.904287338256836, 841.7656860351562)
+                humr.CFrame = CFrame.new(-869.368896484375, 23.344104766845703, 484.44085693359375)
+                wait(1)
+                humr.CFrame = CFrame.new(-869.368896484375, 23.344104766845703, 484.44085693359375)
+                task.wait(0.7)
+                humr.CFrame = CFrame.new(-869.368896484375, 23.344104766845703, 484.44085693359375)
+                wait(0.8)
+                humr.CFrame = CFrame.new(-1006.4979248046875, 38.968605041503906, 833.8005981445312)
             elseif Option == "County Gas Station" then
-                humr.Position = Vector3.new(738.2784423828125, 3.771601676940918, -1524.680419921875)
+                humr.CFrame = CFrame.new(263.0196533203125, 3.2969253063201904, -689.057373046875)
+                wait(1)
+                humr.CFrame = CFrame.new(738.2784423828125, 3.771601676940918, -1524.680419921875)
+                task.wait(0.8)
+                humr.CFrame = CFrame.new(738.2784423828125, 3.771601676940918, -1524.680419921875)
+                task.wait(0.8)
+                humr.CFrame = CFrame.new(738.2784423828125, 3.771601676940918, -1524.680419921875)
             elseif Option == "Town Gas Station" then
-                humr.Position = Vector3.new(2524.9228515625, -11.879977226257324, -1749.6904296875)
+                humr.CFrame = CFrame.new(1542.789794921875, 3.2959001064300537, -781.2706909179688)
+                wait(1)
+                humr.CFrame = CFrame.new(1890.2059326171875, 3.1904311180114746, -1361.2642822265625)
+                wait(1)
+                humr.CFrame = CFrame.new(2524.75073, -2.09069061, -1776.50439, 0, 0, -1, 0, 1, 0, 1, 0, 0)
 
             end
         end
