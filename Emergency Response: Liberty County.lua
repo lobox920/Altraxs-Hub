@@ -766,7 +766,7 @@ local Dropdown = Tab:CreateDropdown({
 
 local Tab = Window:CreateTab("Farming", 7072707588) 
 
-Tab:CreateParagraph({Title = "Please Read", Content = "In auto lock pick please move gui to right or left side."})
+Tab:CreateParagraph({Title = "Please Read", Content = "Move gui to right/left side bottom/top so it wont bug you while auto farm."})
 
 local Toggle = Tab:CreateToggle({
     Name = "Auto ATM",
