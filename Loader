@@ -12,7 +12,7 @@ function updatecheck()
       game:Shutdown()
      elseif game.PlaceVersion == 2265 then
       rconsoleprint("\n  Altrax Hub : ".."Script Updated, Current Game Version:"..game.PlaceVersion)
-      rconsoleprint("\n  Altraxs Hub : " .. " Welcome "..game:GetService("Players").LocalPlayer.Name.." Make sure you give your feedback in discord")
+      rconsoleprint("\n  Altrax Hub : " .. " Welcome "..game:GetService("Players").LocalPlayer.Name.." Make sure you give your feedback in discord")
      end
 end
 end
