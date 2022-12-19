@@ -2,13 +2,13 @@ task.spawn(function()
     local gamemt = getrawmetatable(game)
     setreadonly(gamemt, false)
     local nc = gamemt.__namecall
-   
+    
     gamemt.__namecall = newcclosure(function(...)
      if (getnamecallmethod() == 'GetTotalMemoryUsageMb') then
        return math.random(395, 405)
      end
      return nc(...)
-   end)
+    end)
    local BlockedRemotes = { 
        "ResyncCharacter",
        "Handcuffs",
@@ -47,7 +47,7 @@ task.spawn(function()
    setreadonly(gameMeta, true)
    hookfunction(game.Stats.GetTotalMemoryUsageMb, function() return math.random(395, 405) end)
 end)
-if getgenv().HaveLoadedAltraxsHub == true then game:GetService("Players").LocalPlayer:Kick("Script can only be executed once!") return end
+--if getgenv().HaveLoadedAltraxsHub == true then game:GetService("Players").LocalPlayer:Kick("Script can only be executed once!") return end
 getgenv().HaveLoadedAltraxsHub = true
 task.wait(0.8)
 ---------------------------------------------------Functions---------------------------------------------------
@@ -328,18 +328,26 @@ local Tab = Window:CreateTab("Player", 7072724538)
 
 
 local Slider = Tab:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {16, 1000},
-   Increment = 10,
-   Suffix = "WalkSpeed",
-   CurrentValue = 10,
-   Flag = "Slider1",
-   Callback = function(Value)
-    game:GetService"RunService".RenderStepped:Connect(function()
-        hum.WalkSpeed = Value
-    end)
-   end,
+    Name = "WalkSpeed",
+    Range = {16, 1000},
+    Increment = 10,
+    Suffix = "WalkSpeed",
+    CurrentValue = 10,
+    Flag = "Slider1",
+    Callback = function(Value)
+        _G.WalkSpeed = Value
+    end,
 })
+game:GetService"RunService".RenderStepped:Connect(function()
+    if _G.WalkSpeedChange then
+        hum.WalkSpeed = _G.WalkSpeed
+    end
+    if _G.JumpPowerChange then
+        hum.UseJumpPower = false
+        hum.JumpHeight = Value
+    end
+end)
+
 
 local Slider = Tab:CreateSlider({
     Name = "JumpPower",
@@ -349,8 +357,7 @@ local Slider = Tab:CreateSlider({
     CurrentValue = 10,
     Flag = "Slider1",
     Callback = function(Value)
-        hum.UseJumpPower = false
-        hum.JumpHeight = Value
+        _G.JumpPower = Value
     end,
 })
 
