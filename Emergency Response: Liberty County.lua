@@ -1,18 +1,15 @@
 if getgenv().HaveLoadedAltraxsHub == true then game:GetService("Players").LocalPlayer:Kick("Script can only be executed once!") return end
 getgenv().HaveLoadedAltraxsHub = true
 ---------------------------------------------------ANTICHEAT BYPASS---------------------------------------------------
--- Made by us and a little help of Extrovert#4523 to help me understand
-local BlockedRemotes = { -- Idk what are those remotes but it doesnt create or have cause any problem in game
+local BlockedRemotes = { 
     "ResyncCharacter",
     "Handcuffs",
     "CarLeave",
-    "GetCurrency", -- It get data from the remote GetPlayerData
-    "GameAnalyticsError",
+    "GetCurrency", 
     "PurchaseShopItem",
     "ToolPickUp",
     "CarModify",
     "CheckWalkSpeed",
-    "ViewTrafficCamera",
 }
 local Events = {
     Fire = true, 
@@ -73,16 +70,10 @@ local CivilianTeam = TeamsF:WaitForChild("Civilian")
 local PoliceTeam = TeamsF:WaitForChild("Police")
 local SheriffTeam = TeamsF:WaitForChild("Sheriff")
 
-if ReplicatedStorage:FindFirstChild("GameAnalyticsr") then
-    ReplicatedStorage:WaitForChild("GameAnalyticsError"):Destroy()
-end
-if ReplicatedStorage:FindFirstChild("GameAnalytics") then
-    ReplicatedStorage:WaitForChild("GameAnalytics"):Destroy()
-end
 local devconsole = CoreGui:FindFirstChild("DevConsoleMaster")
 --if devconsole then devconsole:Destroy() end -- DevConsoleMas
 
-plr.CharacterAdded:Connect(function(newChar) -- disable connection so it doesnt spam error, i wanted to have a cleaner console
+plr.CharacterAdded:Connect(function(newChar)
     char = newChar
     humr = newChar:WaitForChild("HumanoidRootPart")
     hum = newChar:WaitForChild("Humanoid")
@@ -237,19 +228,19 @@ Lockpick.DescendantAdded:Connect(function(child)
 end)
 
 
-Main.Safe.ChildAdded:Connect(function(child) --- Idk if it work it was working sometimes x)
+Main.Safe.ChildAdded:Connect(function(child)
     if child:IsA("Frame") and child.Name == "Safe" then
         local SafeUI = Main.Safe
         task.wait(2)
         repeat
             local success, message = pcall(function()
                 local Rotation = child.Dial.Rotation
-                local Wanted = tonumber(SafeUI.Top2.TargetNum.Text)
-                local Current = (math.abs(Rotation) % 360)/36*10
+                local TargetNumber = tonumber(SafeUI.Top2.TargetNum.Text)
+                local CurrentNumber = (math.abs(Rotation) % 360)/36*10
                 if Rotation > 0 then
-                    Current = 100 - Current
+                    CurrentNumber = 100 - CurrentNumber
                 end
-                if math.abs(Current - Wanted) <= 1 then
+                if math.abs(CurrentNumber - TargetNumber) <= 1 then
                     if _G.AutoSafe then
                         Click()
                         task.wait(1)
@@ -948,15 +939,8 @@ local function webhook(WebHook, player)
            ["content"] = "@here",
            ["embeds"] = {
                {
-                   ["title"] = "Altrax Hub Mod Detection System",
+                   ["title"] = "Test Webhook Altrax Mod Detection System",
                    ["type"] = "rich",
-                   ["fields"] = {
-                    {
-                        ["name"] = "Admin Joined!",
-                        ["value"] = "Admin : "..player.Name.." Has joined the server",
-                        ["inline"] = false
-                    },
-                   },
                    ["color"] = tonumber(0x7269da),
                }
            }
@@ -988,7 +972,7 @@ _G.ModDetection = false
 Players.PlayerAdded:Connect(function(player)
     if player:GetRoleInGroup(4328109) == "Moderator" or player:GetRoleInGroup(4328109) == "Developer" or player:GetRoleInGroup(4328109) == "Senior Developer" or player:GetRoleInGroup(4328109) == "Community Manager"  or player:GetRoleInGroup(4328109) == "Owner" then
         if _G.ModDetection then
-            webhook(_G.Webhook, player)
+            webhook("")
         end
     end
 end)   
@@ -996,7 +980,7 @@ end)
 local Button = Misc:CreateButton({
     Name = "Test Webhook",
     Callback = function()
-        webhook(_G.Webhook, plr)
+        webhook(_G.Webhook)
     end,
 })
 
