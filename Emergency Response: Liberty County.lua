@@ -1015,5 +1015,35 @@ local Toggle = Misc:CreateToggle({
     Flag = "Toggle1",
     Callback = function(Value)
         _G.ModDetection = Value
+        if _G.ModDetection ~= true then
+            Rayfield:Notify({
+                Title = "Altrax Hub :",
+                Content = "ModDetection is turned Off",
+                Duration = 6.5,
+                Image = 4483362458,
+                Actions = { 
+                    Ignore = {
+                       Name = "Yes Master",
+                       Callback = function()
+                    end
+                },
+            },
+            })
+        end
+        if _G.ModDetection == true then 
+            Rayfield:Notify({
+                Title = "Altrax Hub :",
+                Content = "ModDetection is On",
+                Duration = 6.5,
+                Image = 4483362458,
+                Actions = { 
+                    Ignore = {
+                       Name = "Yes Master",
+                       Callback = function()
+                    end
+                },
+            },
+            })
+        end
     end,
 })
