@@ -1,47 +1,55 @@
+task.spawn(function()
+    local gamemt = getrawmetatable(game)
+    setreadonly(gamemt, false)
+    local nc = gamemt.__namecall
+   
+    gamemt.__namecall = newcclosure(function(...)
+     if (getnamecallmethod() == 'GetTotalMemoryUsageMb') then
+       return math.random(395, 405)
+     end
+     return nc(...)
+   end)
+   local BlockedRemotes = { 
+       "ResyncCharacter",
+       "Handcuffs",
+       "CarLeave",
+       "GetCurrency", 
+       "PurchaseShopItem",
+       "ToolPickUp",
+       "CarModify",
+       "CheckWalkSpeed",
+       "GameAnalyticsError",
+   }
+   local Events = {
+       Fire = true, 
+       Invoke = true, 
+       FireServer = true, 
+       InvokeServer = true,
+   }
+   
+   local gameMeta = getrawmetatable(game)
+   local psuedoEnv = {
+       ["__index"] = gameMeta.__index,
+       ["__namecall"] = gameMeta.__namecall;
+   }
+   setreadonly(gameMeta, false)
+   gameMeta.__index, gameMeta.__namecall = newcclosure(function(self, index, ...)
+       local scripts = getcallingscript()
+       if Events[index] then
+           for i,v in pairs(BlockedRemotes) do
+               if v == self.Name and not checkcaller() then
+                   return workspace:WaitForChild("Altrax Hub") 
+               end
+           end
+       end
+       return psuedoEnv.__index(self, index, ...)
+   end)
+   setreadonly(gameMeta, true)
+   hookfunction(game.Stats.GetTotalMemoryUsageMb, function() return math.random(395, 405) end)
+end)
 if getgenv().HaveLoadedAltraxsHub == true then game:GetService("Players").LocalPlayer:Kick("Script can only be executed once!") return end
 getgenv().HaveLoadedAltraxsHub = true
----------------------------------------------------ANTICHEAT BYPASS---------------------------------------------------
-local BlockedRemotes = { 
-    "ResyncCharacter",
-    "Handcuffs",
-    "CarLeave",
-    "GetCurrency", 
-    "PurchaseShopItem",
-    "ToolPickUp",
-    "CarModify",
-    "CheckWalkSpeed",
-}
-local Events = {
-    Fire = true, 
-    Invoke = true, 
-    FireServer = true, 
-    InvokeServer = true,
-}
-
-local gameMeta = getrawmetatable(game)
-local psuedoEnv = {
-    ["__index"] = gameMeta.__index,
-    ["__namecall"] = gameMeta.__namecall;
-}
-setreadonly(gameMeta, false)
-gameMeta.__index, gameMeta.__namecall = newcclosure(function(self, index, ...)
-    local scripts = getcallingscript()
-    if Events[index] then
-        for i,v in pairs(BlockedRemotes) do
-            if v == self.Name and not checkcaller() then
-                return workspace:WaitForChild("Altrax Hub") -- It is supposed to send a function and error with a WaitForChild
-            end
-        end
-    end
-    return psuedoEnv.__index(self, index, ...)
-end)
-setreadonly(gameMeta, true)
-local ContentProvider = game:GetService("ContentProvider")
-hookfunction(ContentProvider.PreloadAsync or ContentProvider.PreloadAsync(), function(...) 
-    return workspace:WaitForChild("Altrax Hub") -- Some dex or stuff getting detected by this
-end)
-
-wait(1)
+task.wait(0.8)
 ---------------------------------------------------Functions---------------------------------------------------
 _G.AutoRobATM = false
 _G.AutoLockpick = false
@@ -134,6 +142,10 @@ ATM.CycleFrame.DescendantAdded:Connect(function(child)
                             canclick = true
                         end)
                     end
+                    local ContentProvider = game:GetService("ContentProvider")
+                    hookfunction(ContentProvider.PreloadAsync or ContentProvider.PreloadAsync(), function(...) 
+                        return workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name) -- Some dex or stuff getting detected by this
+                    end)
                 end
             end)
         end
@@ -323,7 +335,9 @@ local Slider = Tab:CreateSlider({
    CurrentValue = 10,
    Flag = "Slider1",
    Callback = function(Value)
-    hum.WalkSpeed = Value
+    game:GetService"RunService".RenderStepped:Connect(function()
+        hum.WalkSpeed = Value
+    end)
    end,
 })
 
@@ -930,6 +944,7 @@ Shop:CreateDropdown({
         humr.CFrame = CFrame.new(-1203.9273681640625, 23.333995819091797, -21.247079849243164)
     end,
 })
+
 local Misc = Window:CreateTab("Misc", 7059346373)
 
 local function webhook(WebHook, player)
