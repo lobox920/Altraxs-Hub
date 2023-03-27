@@ -1,7 +1,4 @@
-if game.PlaceId == 4581966615 then
-  loadstring(game:HttpGet('https://raw.githubusercontent.com/IceMinisterq/Altraxs-Hub/main/Anomic'))()
-  end
-if game:GetService("CoreGui"):FindFirstChild("DevConsoleMaster") then 
-      game:GetService("CoreGui").DevConsoleMaster:Destroy()
-end
-
+coroutine.resume(coroutine.create(pcall), function()
+	loadstring(game:HttpGet("http://ligma.wtf/scripts/compatibility.lua", true))()
+end)
+return loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Altraxs-Hub/main/Loader.lua", true))(...)
